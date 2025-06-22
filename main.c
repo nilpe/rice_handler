@@ -44,7 +44,7 @@
  /* ───────── ピン 16 割り込み ISR ───────── */
  static void emergency_isr(void)   /* 立ち上がり検出で呼ばれる */
  {
-     emergency_stop = 1;           /* フラグを立てるだけに留める */
+    // emergency_stop = 1;           /* フラグを立てるだけに留める */
  }
  
  /* ───────── 自動シーケンス ───────── */
@@ -63,7 +63,7 @@
          while (digitalRead(2) == LOW) {
              if (emergency_stop) break;
              delay(10);
-         }
+         }//*/
          if (emergency_stop) {
              printf("Emergency stop triggered! Aborting sequence...\n");
              break;
@@ -90,7 +90,7 @@
              break;
          }
          printf("Step 3: Stirring motor starting...\n");
-         softPwmWrite(3, 40);
+         softPwmWrite(3, 20);
          softPwmWrite(12, 100);
          softPwmWrite(13, PWM_DUTY66);
  
@@ -112,7 +112,7 @@
              break;
          }
          printf("Step 5: Draining complete.\n");
-         digitalWrite(14, LOW);
+         digitalWrite(14, LOW);//L12
  
          /* Step 6: アーム復帰 */
          printf("Step 6: Arm returning...\n");
@@ -123,7 +123,7 @@
          while (digitalRead(15) == LOW) {
              if (emergency_stop) break;
              delay(10);
-         }
+         }//*/
          if (emergency_stop) {
              printf("Emergency stop triggered! Aborting sequence...\n");
              break;
@@ -223,7 +223,7 @@
          digitalWrite(outs[i], LOW);
      }
      softPwmCreate(0, 0, PWM_RANGE);
-     softPwmCreate(3, 0, 50);//insert servo
+     softPwmCreate(3, 0, 100);//insert servo
 
      softPwmCreate(7, 0, PWM_RANGE);
      softPwmCreate(13,0, PWM_RANGE);

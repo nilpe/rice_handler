@@ -54,7 +54,7 @@
  static void emergency_isr(void)   /* 立ち上がり検出で呼ばれる */
  {
      /* 必要ならここで emergency_stop = 1; を有効化 */
-      emergency_stop = 1; 
+      //emergency_stop = 1; 
  }
  
  /* ───────── 自動シーケンス ───────── */
@@ -250,9 +250,9 @@
      all_low();//debug
 
      /* 非常停止割り込み (ピン 16 立ち上がり) */
-     if (wiringPiISR(16, INT_EDGE_RISING, &emergency_isr) < 0) {
+     /*if (wiringPiISR(16, INT_EDGE_RISING, &emergency_isr) < 0) {
          perror("wiringPiISR"); return 1;
-     }
+     }//*/
  
      /* ソケット準備 */
      int sfd = socket(AF_INET, SOCK_STREAM, 0);
